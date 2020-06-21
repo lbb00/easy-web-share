@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {},
+  "include": [
+    "scripts",
+    "test"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
