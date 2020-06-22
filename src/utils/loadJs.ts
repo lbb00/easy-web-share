@@ -1,4 +1,4 @@
-export default function loadJs (src: string, checkHasScriptFn: ()=> boolean) {
+export default function loadJs (src: string, checkHasScriptFn: () => boolean) {
   let hasScript = false
   if (typeof checkHasScriptFn === 'function') hasScript = checkHasScriptFn()
   if (hasScript) return Promise.resolve()

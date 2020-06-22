@@ -7,5 +7,5 @@ module.exports = {
   },
   globals: {
     mqq: true,
-  },
+  }
 }

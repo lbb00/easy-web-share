@@ -5,6 +5,17 @@ interface ShareInfo {
   imageUrl: string
 }
 
+interface WebShareOptions {
+  syncMeta?: SyncMetaConfig
+}
+
+interface SyncMetaConfig {
+  url?: boolean
+  title?: boolean
+  desc?: boolean
+  imageUrl?: boolean
+}
+
 interface Platform {
   uaRegex: RegExp
 
@@ -17,7 +28,6 @@ interface ShareAdapter {
   setShareInfo: (shareInfo: ShareInfo) => Promise<any>
 }
 
-// eslint-disable-next-line
 interface Window {
   mqq: any
 }
