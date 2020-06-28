@@ -31,3 +31,12 @@ interface ShareAdapter {
 interface Window {
   mqq: any
 }
+
+interface CreateWebShare {
+  (option?: WebShareOptions): {
+    setGlobalShareInfo: (info?: ShareInfo) => void
+    getGlobalShareInfo: () => ShareInfo | undefined
+    setShareInfo: (info?: ShareInfo) => Promise<any>
+    getShareInfo: () => ShareInfo | undefined
+  }
+}

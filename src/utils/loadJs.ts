@@ -1,8 +1,8 @@
-export default function loadJs (src: string, checkHasScriptFn: () => boolean) {
+export default async function loadJs (src: string, checkHasScriptFn: () => boolean): Promise<any> {
   let hasScript = false
   if (typeof checkHasScriptFn === 'function') hasScript = checkHasScriptFn()
-  if (hasScript) return Promise.resolve()
-  return new Promise((resolve, reject) => {
+  if (hasScript) return await Promise.resolve()
+  return await new Promise((resolve, reject) => {
     const script = document.createElement('script')
     script.src = src
     script.async = true

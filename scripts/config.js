@@ -1,89 +1,85 @@
 const path = require('path')
-
-const nodeResolve = require('rollup-plugin-node-resolve')
-const commonjs = require('rollup-plugin-commonjs')
-const replace = require('rollup-plugin-replace')
 const typescript = require('rollup-plugin-typescript2')
-const babel7 = require('rollup-plugin-babel')
 const { terser } = require('rollup-plugin-terser')
 
-const version = process.env.VERSION || require('../package.json').version
+const { default: nodeResolve } = require('@rollup/plugin-node-resolve')
+const replace = require('@rollup/plugin-replace')
+const BabelPlugin = require('@rollup/plugin-babel')
+const packageJSON = require('../package.json')
 
-const babel = () => babel7({ exclude: 'node_modules/**', extensions: ['.js', '.ts'], externalHelpers: true })
+const babel = () =>
+  BabelPlugin.default({ babelHelpers: 'bundled', extensions: ['.js', '.ts'], skipPreflightCheck: true })
+const version = process.env.VERSION || packageJSON.version
+
 const resolve = (p) => {
-  return path.resolve(__dirname, '../', p)
+  return path.resolve(process.env.PWD, './', p)
 }
 
 const builds = {
-  umd: {
-    entry: resolve('src/main.ts'),
-    dest: resolve('dist/webShare.js'),
-    format: 'umd',
-    plugins: [babel()],
+  esm: {
+    dest: resolve('dist/webShare.esm.js'),
+    format: 'esm',
+    plugins: [babel()]
   },
-  'umd-min': {
-    entry: resolve('src/main.ts'),
+  cjs: {
+    dest: resolve('dist/webShare.cjs.js'),
+    format: 'cjs',
+    plugins: [babel()]
+  },
+  min: {
     dest: resolve('dist/webShare.min.js'),
     format: 'umd',
     plugins: [
       babel(),
       terser({
-        toplevel: true,
-        compress: {},
-        output: {
-          ascii_only: true,
-        },
-      }),
-    ],
-  },
-  esm: {
-    entry: resolve('src/main.ts'),
-    dest: resolve('dist/webShare.esm.js'),
-    format: 'esm',
-  },
-  cjs: {
-    entry: resolve('src/main.ts'),
-    dest: resolve('dist/webShare.cjs.js'),
-    plugins: [babel()],
-    format: 'cjs',
-  },
+        compress: {
+          ecma: 2015,
+          pure_getters: true
+        }
+      })
+    ]
+  }
 }
 
-function genConfig(name) {
+function genConfig (name) {
   const opts = builds[name]
   const config = {
     input: resolve('./src/main.ts'),
-    // https://stackoverflow.com/questions/52849894/how-to-handle-copyright-notice-in-javascript-bundle
-    external: ['tslib'],
     plugins: [
       replace({
         include: opts.entry,
         values: {
-          __VERSION__: JSON.stringify(version),
-        },
+          __VERSION__: JSON.stringify(version)
+        }
       }),
       nodeResolve({
-        browser: true,
+        browser: true
       }),
-      commonjs(),
       typescript({
         clean: true,
-        tsconfig: resolve('./tsconfig.json'),
-      }),
+        tsconfig: resolve('./tsconfig.json')
+      })
     ].concat(opts.plugins || []),
     output: {
       name: opts.name || 'webShare',
       format: opts.format,
       exports: 'named',
-      file: opts.dest,
+      file: opts.dest
     },
+    treeshake: {
+      moduleSideEffects: false
+    }
   }
   return config
+}
+
+function getAllConfigs () {
+  return Object.keys(builds).map(genConfig)
 }
 
 if (process.env.TARGET) {
   module.exports = genConfig(process.env.TARGET)
 } else {
   exports.getBuild = genConfig
-  exports.getAllConfigs = () => Object.keys(builds).map(genConfig)
+  exports.getAllConfigs = getAllConfigs
 }

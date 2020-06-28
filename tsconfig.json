@@ -1,13 +1,13 @@
 {
-  "include": ["./src", "./global.d.ts"],
+  "include": ["./"],
   "compilerOptions": {
-    "target": "es6",
+    "target": "esnext",
     "strict": true,
     "module": "es6",
-    "lib": ["es6", "es7", "dom"],
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "declaration": true,
     "suppressImplicitAnyIndexErrors": true
-  }
+  },
+  "exclude": ["./node_modules", "./dist"]
 }

@@ -1,16 +1,14 @@
 const fs = require('fs')
 const zlib = require('zlib')
-const glob = require('glob')
 const { rollup } = require('rollup')
 const path = require('path')
 const del = require('del')
 const { getAllConfigs } = require('./config')
 
-const distDir = path.resolve(__dirname, '../dist')
-const typesDir = path.resolve(__dirname, '../types')
+const distDir = path.resolve(process.env.PWD, './dist')
 
 function main () {
-  del.sync(typesDir)
+  del.sync(distDir)
 
   if (!fs.existsSync(distDir)) {
     fs.mkdirSync(distDir)
@@ -20,10 +18,11 @@ function main () {
 }
 
 function build (configs) {
-  const next = async count => {
+  const next = async (count) => {
     if (count >= configs.length) return
     try {
-      const { code, fileName } = await buildEntry(configs[count])
+      const { output } = await buildEntry(configs[count])
+      const { code, fileName } = output[0]
       await new Promise((resolve, reject) => {
         function report (extra) {
           console.log(blue(fileName) + ' ' + getSize(code) + (extra || ''))
@@ -46,7 +45,7 @@ function buildEntry (config) {
   const output = JSON.parse(JSON.stringify(config.output))
   const { file } = output
   const isProd = /min\.js$/.test(file)
-  return rollup(config).then(bundle => {
+  return rollup(config).then((bundle) => {
     if (isProd) {
       output.banner = ''
     }
