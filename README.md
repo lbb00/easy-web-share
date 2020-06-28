@@ -1,6 +1,7 @@
 # WebShare - 网页分享 SDK
 
-[![Npm](https://img.shields.io/npm/v/@climple/web-share.svg?style=flat-square)](https://www.npmjs.com/package/@climple/web-share)
+[![Npm](https://badgen.net/npm/v/@climple/web-share)](https://www.npmjs.com/package/@climple/web-share)
+[![Bundlephobia](https://badgen.net/bundlephobia/minzip/@climple/web-share)](https://bundlephobia.com/result?p=@climple/web-share)
 
 网页端经常遇到的场景：点击右上角转发给好友或直接调起原生 APP 的分享。为了让分享后等到比较好的展示效果，比如标题、简略图片、描述等，开发者部的不对每个平台进行配置。由于但平台众多，每个平台都不一致，让人十分头疼。
 

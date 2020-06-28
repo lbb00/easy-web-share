@@ -1,6 +1,6 @@
 {
   "name": "@climple/web-share",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "dist/webShare.cjs.js",
   "module": "dist/webShare.esm.js",
   "types": "types/index.d.ts",
