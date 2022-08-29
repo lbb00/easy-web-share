@@ -45,4 +45,6 @@ export const createWebShare: CreateWebShare = (options) => {
   }
 }
 
-export default createWebShare
+const webShare = createWebShare()
+
+export default webShare

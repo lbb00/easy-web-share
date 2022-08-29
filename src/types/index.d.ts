@@ -1,10 +1,3 @@
-interface ShareInfo {
-  url: string
-  title: string
-  desc: string
-  imageUrl: string
-}
-
 interface WebShareOptions {
   syncMeta?: SyncMetaConfig
 }
@@ -16,12 +9,6 @@ interface SyncMetaConfig {
   imageUrl?: boolean
 }
 
-interface Platform {
-  uaRegex: RegExp
-
-  adapter: ShareAdapter
-}
-
 interface ShareAdapter {
   sdkSrc: string
   isReady: () => boolean
@@ -30,6 +17,7 @@ interface ShareAdapter {
 
 interface Window {
   mqq: any
+  wx: any
 }
 
 interface CreateWebShare {
@@ -40,3 +28,5 @@ interface CreateWebShare {
     getShareInfo: () => ShareInfo | undefined
   }
 }
+
+declare const createWebShare: CreateWebShare

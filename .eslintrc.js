@@ -10,9 +10,12 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  globals: {
+    wx: false,
+  },
   rules: {
     '@typescript-eslint/prefer-function-type': [0],
     '@typescript-eslint/strict-boolean-expressions': [0],
-    '@typescript-eslint/restrict-template-expressions': [0]
+    '@typescript-eslint/restrict-template-expressions': [0],
   },
 }
