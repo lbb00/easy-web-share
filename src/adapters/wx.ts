@@ -1,6 +1,6 @@
 // https://open.mobile.qq.com
 
-const qqAdapter: ShareAdapter = {
+const wxAdapter: ShareAdapter = {
   sdkSrc: '//res.wx.qq.com/open/js/jweixin-1.6.0.js',
   isReady () {
     return !!window.wx
@@ -17,4 +17,4 @@ const qqAdapter: ShareAdapter = {
   }
 }
 
-export default qqAdapter
+export default wxAdapter
