@@ -7,7 +7,7 @@
 
 ## 支持平台
 
-- web social
+- Web Social
 - QQ
 - QQ 空间
 - 微信
@@ -17,28 +17,38 @@
 ```javascript
 import webShare from 'easy-web-share'
 
-
-// 创建并配置全局分享信息
-const webShare = createWebShare({
+webShare.setGlobalShareInfo({
   url: '分享地址',
   title: '分享标题',
   desc: '分享描述',
   imageUrl: '分享图片地址
 })
 
-// 更新分享信息，在需要的页面调用
+// 更新分享信息
+// SPA 应用需要在每个页面调用，否则会使用 GlobalShareInfo 的配置
 webShare.setShareInfo({
   url: '分享地址',
   title: '分享标题',
   desc: '分享描述',
   imageUrl: '分享图片地址
 })
-
 ```
 
-> 在需要 SDK 才能设置分享内容的环境中，如微信、QQ ，如果没有加载对应的 jssdk，本项目会自动加载对应的 jssdk。
+### 手动创建
+
+```javascript
+import { createWebShare } from 'easy-web-share'
+const webShare = createWebShare({
+  url: '分享地址',
+  title: '分享标题',
+  desc: '分享描述',
+  imageUrl: '分享图片地址
+})
+```
 
 ### 特殊配置
+
+> 在需要 SDK 才能设置分享内容的环境中，如微信、QQ ，如果没有加载对应的 jssdk，本项目会自动加载对应的 jssdk。
 
 #### 微信
 
