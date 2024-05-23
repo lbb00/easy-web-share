@@ -1,5 +1,5 @@
 declare global {
-  let wx: any
+	let wx: any
 }
 
 export {}

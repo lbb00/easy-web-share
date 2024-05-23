@@ -1,13 +1,13 @@
 {
-  "include": ["./"],
-  "compilerOptions": {
-    "target": "esnext",
-    "strict": true,
-    "module": "es6",
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "declaration": true,
-    "suppressImplicitAnyIndexErrors": true
-  },
-  "exclude": ["./node_modules", "./dist"]
+	"include": ["./"],
+	"compilerOptions": {
+		"target": "esnext",
+		"strict": true,
+		"module": "es6",
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"declaration": true,
+		"suppressImplicitAnyIndexErrors": true
+	},
+	"exclude": ["./node_modules", "./dist"]
 }

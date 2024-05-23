@@ -1,11 +1,5 @@
 {
-  "compilerOptions": {},
-  "include": [
-    "scripts",
-    "test"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist"
-  ]
+	"compilerOptions": {},
+	"include": ["scripts", "test"],
+	"exclude": ["node_modules", "dist"]
 }
