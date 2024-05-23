@@ -17,7 +17,9 @@
 	"main": "./dist/index.umd.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "vite build",
 		"format": "biome format --write ./"
@@ -32,7 +34,7 @@
 	"author": "onelong",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/lbb00/easy-web-share"
+		"url": "git+https://github.com/lbb00/easy-web-share.git"
 	},
 	"license": "MIT",
 	"devDependencies": {
